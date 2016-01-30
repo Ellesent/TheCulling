@@ -5,7 +5,8 @@ public class MainMenuSpriteBehavior : MonoBehaviour {
 
     public Sprite openEnvelope;
     public GameObject text;
-
+    public GameObject invitation;
+    public GameObject button;
 	// Use this for initialization
 	void Start () {
 	
@@ -20,5 +21,7 @@ public class MainMenuSpriteBehavior : MonoBehaviour {
         //change sprite of envelope and destroy the beginning text 
         closedEnvelope.GetComponent<SpriteRenderer>().sprite = openEnvelope;
         Destroy(text);
+        Instantiate(invitation, closedEnvelope.transform.position, Quaternion.identity);
+        Destroy(button);
     }
 }
