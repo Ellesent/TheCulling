@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class SheepOrWolfDialogue : MonoBehaviour {
+    //decides how many points each dialogue option is worth
     public int wolf;
     public int sheep;
 
@@ -18,6 +19,7 @@ public class SheepOrWolfDialogue : MonoBehaviour {
 
    public void OnClick()
     {
+       //when a dialogue option is clicked, add the points of that option to the total amount of points the player has
         SheepWolfManager.wolfTotal += wolf;
         SheepWolfManager.sheepTotal += sheep; 
     }
