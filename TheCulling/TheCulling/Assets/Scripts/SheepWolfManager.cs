@@ -15,6 +15,7 @@ public class SheepWolfManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log("Wolf: " + wolfTotal + " Sheep: " + sheepTotal);
 	
 	}
 }
