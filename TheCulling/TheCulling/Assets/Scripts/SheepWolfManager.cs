@@ -7,6 +7,7 @@ public class SheepWolfManager : MonoBehaviour {
     public static int wolfTotal; //used to keep track of total wolf points
     public static int sheepTotal; //used to keep track of total sheep points
     public static string name;
+    public static int dialogueCount;
 	void Start () {
         //start off with 0 sheep and wolf points
         wolfTotal = 0;
@@ -15,7 +16,7 @@ public class SheepWolfManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log("Wolf: " + wolfTotal + " Sheep: " + sheepTotal);
+        //Debug.Log("Wolf: " + wolfTotal + " Sheep: " + sheepTotal);
 	
 	}
 }
