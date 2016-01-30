@@ -1,4 +1,15 @@
 # CS3350-MasterBlaster
+NAMES YAY:
+
+Frankie Pate-Rinaldi
+Andrew Day
+Matt Dobbs
+Jen Dobyns
+Jaiden Clark
+Adam Coash
+Patrick Harris
+Alan Ford
+
 
 Diversifiers for 2016:
 
