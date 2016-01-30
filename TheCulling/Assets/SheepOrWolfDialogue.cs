@@ -16,7 +16,7 @@ public class SheepOrWolfDialogue : MonoBehaviour {
 	
 	}
 
-    void OnClick()
+   public void OnClick()
     {
         SheepWolfManager.wolfTotal += wolf;
         SheepWolfManager.sheepTotal += sheep; 
