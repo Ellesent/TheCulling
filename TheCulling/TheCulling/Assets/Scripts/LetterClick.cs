@@ -4,9 +4,12 @@ using System.Collections;
 public class LetterClick : MonoBehaviour {
     public Sprite RSVP;
     public GameObject input;
+    public static LetterClick fd;
+    
 
 	// Use this for initialization
 	void Start () {
+ 
 	
 	}
 	
@@ -24,4 +27,5 @@ public class LetterClick : MonoBehaviour {
         bob.GetComponent<RectTransform>().anchoredPosition = new Vector2(-59, -39);
 
     }
+
 }
