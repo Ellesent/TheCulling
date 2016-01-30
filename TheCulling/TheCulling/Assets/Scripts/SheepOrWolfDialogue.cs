@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class SheepOrWolfDialogue : MonoBehaviour {
     //decides how many points each dialogue option is worth
     public int wolf;
     public int sheep;
+    public GameObject background;
+    public Text replyText;
 
 	// Use this for initialization
 	void Start () {
@@ -17,10 +20,13 @@ public class SheepOrWolfDialogue : MonoBehaviour {
 	
 	}
 
-   public void OnClick()
+   public void OnClick(string reply)
     {
        //when a dialogue option is clicked, add the points of that option to the total amount of points the player has
         SheepWolfManager.wolfTotal += wolf;
-        SheepWolfManager.sheepTotal += sheep; 
+        SheepWolfManager.sheepTotal += sheep;
+        Destroy(background);
+        reply = reply.Replace("NEWLINE", "\n");
+        replyText.text = reply;
     }
 }
