@@ -11,10 +11,14 @@ public class andrewSheepScript : MonoBehaviour {
     public float speedThreshold;
     public float sideJumpForce;
     public float sideFriction;
+    private bool dead;
 
-	// Use this for initialization
-	void Start () {
+
+
+// Use this for initialization
+void Start () {
         rb = GetComponent<Rigidbody>();
+        dead = false;
 	}
 	
 	// Update is called once per frame
@@ -52,13 +56,38 @@ public class andrewSheepScript : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter()
+    void OnCollisionEnter(Collision collision)
     {
         Debug.Log("CollisionEnter");
         rb.AddRelativeForce(Vector3.left * sideJumpForce);
+        if (collision.gameObject.tag =="wolf")
+        {
+            dead = true;
+            isEscaping = false;
+            Debug.Log("DEAD");
+        }
     }
-    void OnTriggerEnter()
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger");
+        Debug.Log(other.tag);
+        if (other.tag == "wolf")
+        {
+            dead = true;
+            isEscaping = false;
+        }
+    }
+
+    void Update()
+    {
+        if(dead)
+        {
+            Transform[] allTransforms = gameObject.GetComponentsInChildren<Transform>();
+
+            foreach (Transform childObjects in allTransforms)
+            {
+                if (gameObject.transform.IsChildOf(childObjects.transform) == false)
+                    Destroy(childObjects.gameObject);
+            }
+        }
     }
 }
