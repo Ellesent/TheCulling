@@ -12,6 +12,7 @@ public class andrewSheepScript : MonoBehaviour {
     public float sideJumpForce;
     public float sideFriction;
     private bool dead;
+    public float torqueAmount;
 
 
 
@@ -70,8 +71,10 @@ void Start () {
     void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.tag);
-        if (other.tag == "wolf")
+        if (other.tag == "wolf" && dead == false)
         {
+            
+            rb.AddRelativeTorque(Vector3.left * torqueAmount);
             dead = true;
             isEscaping = false;
         }
@@ -81,6 +84,7 @@ void Start () {
     {
         if(dead)
         {
+
             Transform[] allTransforms = gameObject.GetComponentsInChildren<Transform>();
 
             foreach (Transform childObjects in allTransforms)
