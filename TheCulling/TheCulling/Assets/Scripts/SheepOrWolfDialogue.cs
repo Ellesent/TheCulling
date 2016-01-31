@@ -11,18 +11,28 @@ public class SheepOrWolfDialogue : MonoBehaviour {
    public static bool finalText;
    public GameObject sound;
    public AudioSource npc;
+   public AudioSource npc1;
   
     float time;
 
 	// Use this for initialization
 	void Start () {
         time = 3;
+        finalText = false;
+        if (GameObject.Find("Friend") != null)
+        {
         npc = GameObject.Find("Friend").GetComponent<AudioSource>();
+        }
+        if (GameObject.Find("Sneaky") != null)
+        {
+            npc1 = GameObject.Find("Sneaky").GetComponent<AudioSource>();
+        }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.Log(finalText);
+        //Debug.Log(time);
+        //Debug.Log(finalText);
         if (finalText == true)
         {
             time -= Time.deltaTime;
@@ -31,8 +41,11 @@ public class SheepOrWolfDialogue : MonoBehaviour {
         }
         if (time <= 0)
         {
-            Destroy(replyText);
+            Debug.Log("YAY");
+            replyText.text = "";
             finalText = false;
+            Destroy(background);
+            time = 3;
         }
 	
 	}
@@ -49,8 +62,15 @@ public class SheepOrWolfDialogue : MonoBehaviour {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Instantiate(sound);
-        Destroy(npc);
-        Destroy(background);
+        if (background.name == "FriendDialogue" &&  npc != null)
+        {
+            Destroy(npc);
+        }
+        if (background.name == "SneakDialogue" && npc1 != null)
+        {
+            Destroy(npc1);
+        }
+        background.GetComponent<RectTransform>().anchoredPosition = new Vector2(500, 500);
         
         
     }

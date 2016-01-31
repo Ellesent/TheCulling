@@ -21,9 +21,22 @@ public class NPCBehavior : MonoBehaviour {
 
     void OnTriggerEnter(Collider coll)
     {
-        if (name == "Friend" && coll.gameObject.tag == "Player")
+        if (coll.gameObject.tag == "Player")
         {
-            dialogue = Instantiate(friendDialogue) as GameObject;
+            if (name == "Friend")
+            {
+                dialogue = Instantiate(friendDialogue) as GameObject;
+                
+
+
+            }
+            else if (name == "Sneaky")
+            {
+
+                dialogue = Instantiate(sneakyDialogue) as GameObject;
+               
+            }
+
             dialogue.transform.SetParent(GameObject.Find("Canvas").transform, false);
             //dialogue.GetComponent<RectTransform>().anchoredPosition = new Vector3();
             SheepWolfManager.dialogueCount += 1;
@@ -34,8 +47,8 @@ public class NPCBehavior : MonoBehaviour {
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+
            
-            
         }
 
 
