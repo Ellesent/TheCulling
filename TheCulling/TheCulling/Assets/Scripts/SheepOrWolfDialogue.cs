@@ -17,7 +17,7 @@ public class SheepOrWolfDialogue : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         time = 3;
-	
+        npc = GameObject.Find("Friend").GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -26,7 +26,6 @@ public class SheepOrWolfDialogue : MonoBehaviour {
         if (finalText == true)
         {
             time -= Time.deltaTime;
-            npc.Stop();
             //Debug.Log(time);
 
         }
@@ -50,6 +49,7 @@ public class SheepOrWolfDialogue : MonoBehaviour {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         Instantiate(sound);
+        Destroy(npc);
         Destroy(background);
         
         
