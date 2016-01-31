@@ -36,6 +36,11 @@ public class NPCBehavior : MonoBehaviour {
                 dialogue = Instantiate(sneakyDialogue) as GameObject;
                
             }
+            else if (name == "Leader")
+            {
+                dialogue = Instantiate(leaderDialogue) as GameObject;
+            }
+                
 
             dialogue.transform.SetParent(GameObject.Find("Canvas").transform, false);
             //dialogue.GetComponent<RectTransform>().anchoredPosition = new Vector3();
