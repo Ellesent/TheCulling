@@ -8,6 +8,9 @@ public class andrewSheepScript : MonoBehaviour {
     public bool isEscaping;
     private Rigidbody rb;
     private float currentSpeed;
+    public float speedThreshold;
+    public float sideJumpForce;
+    public float sideFriction;
 
 	// Use this for initialization
 	void Start () {
@@ -22,10 +25,40 @@ public class andrewSheepScript : MonoBehaviour {
             transform.LookAt(target.transform);
             rb.AddRelativeForce(Vector3.forward);
 
-            rb.velocity = new Vector3(transform.forward.x * currentSpeed, transform.forward.y * currentSpeed, transform.forward.z * currentSpeed);
+            if (rb.velocity.magnitude > speedThreshold)
+            {
+                //rb.velocity = new Vector3(transform.forward.x * currentSpeed, transform.forward.y * currentSpeed, transform.forward.z * currentSpeed);
+            }
 
-            //float step = speed * Time.deltaTime;
-            //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed);
+            //side velocity dampner
+           // Debug.Log(rb.velocity.z);
+            //if we have velocity to the right
+            /*
+            if (rb.velocity.z > 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z - sideFriction);
+            }
+            if (rb.velocity.z < 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z + sideFriction);
+            }
+            */
+            // dampen it
+
+            //if we have velocity to the left
+            //dampen it
+
+
         }
+    }
+
+    void OnCollisionEnter()
+    {
+        Debug.Log("CollisionEnter");
+        rb.AddRelativeForce(Vector3.left * sideJumpForce);
+    }
+    void OnTriggerEnter()
+    {
+        Debug.Log("Trigger");
     }
 }
