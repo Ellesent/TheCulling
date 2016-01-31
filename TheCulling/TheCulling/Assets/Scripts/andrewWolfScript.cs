@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class andrewSheepScript : MonoBehaviour {
+public class andrewWolfScript : MonoBehaviour {
 
     public GameObject target; //the gameobject that the sheep will run towards.
     public float speed;
-    public bool isEscaping;
+    public bool isChasing;
     private Rigidbody rb;
     private float currentSpeed;
     public float speedThreshold;
@@ -19,7 +19,7 @@ public class andrewSheepScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        if (isEscaping)
+        if (isChasing)
         {
             currentSpeed = rb.velocity.magnitude;
             transform.LookAt(target.transform);
