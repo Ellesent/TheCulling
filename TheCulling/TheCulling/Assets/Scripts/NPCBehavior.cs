@@ -46,6 +46,10 @@ public class NPCBehavior : MonoBehaviour {
             {
                 dialogue = Instantiate(braggerDialogue) as GameObject;
             }
+            else if (name == "GossipPeep")
+            {
+                dialogue = Instantiate(gossipDialogue) as GameObject;
+            }
                 
 
             dialogue.transform.SetParent(GameObject.Find("Canvas").transform, false);
