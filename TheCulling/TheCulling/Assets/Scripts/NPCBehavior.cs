@@ -6,6 +6,7 @@ public class NPCBehavior : MonoBehaviour {
     public GameObject sneakyDialogue;
     public GameObject leaderDialogue;
     GameObject dialogue;
+   
 
 	// Use this for initialization
 	void Start () {
@@ -29,6 +30,7 @@ public class NPCBehavior : MonoBehaviour {
             Destroy(GetComponent<Collider>());
             coll.transform.LookAt(GetComponent<Collider>().bounds.center);
             transform.LookAt(coll.GetComponent<Collider>().bounds.center);
+            GetComponent<AudioSource>().Play();
             Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;

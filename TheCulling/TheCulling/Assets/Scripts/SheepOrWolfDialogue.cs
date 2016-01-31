@@ -9,6 +9,9 @@ public class SheepOrWolfDialogue : MonoBehaviour {
     public GameObject background;
     public Text replyText;
    public static bool finalText;
+   public GameObject sound;
+   public AudioSource npc;
+  
     float time;
 
 	// Use this for initialization
@@ -23,12 +26,14 @@ public class SheepOrWolfDialogue : MonoBehaviour {
         if (finalText == true)
         {
             time -= Time.deltaTime;
+            npc.Stop();
             //Debug.Log(time);
 
         }
         if (time <= 0)
         {
             Destroy(replyText);
+            finalText = false;
         }
 	
 	}
@@ -36,15 +41,20 @@ public class SheepOrWolfDialogue : MonoBehaviour {
     public void OnClick(string reply)
     {
         //when a dialogue option is clicked, add the points of that option to the total amount of points the player has
+        Time.timeScale = 1;
         finalText = true;
         SheepWolfManager.wolfTotal += wolf;
         SheepWolfManager.sheepTotal += sheep;
-        Destroy(background);
         reply = reply.Replace("NEWLINE", "\n");
         replyText.text = reply;
-        Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        Instantiate(sound);
+        Destroy(background);
+        
+        
     }
+
+    
       
 }
