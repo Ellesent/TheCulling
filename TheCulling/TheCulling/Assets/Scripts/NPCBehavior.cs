@@ -36,7 +36,7 @@ public class NPCBehavior : MonoBehaviour {
                 dialogue = Instantiate(sneakyDialogue) as GameObject;
                
             }
-            else if (name == "Leader")
+            else if (name == "LeaderPeep")
             {
                 dialogue = Instantiate(leaderDialogue) as GameObject;
             }

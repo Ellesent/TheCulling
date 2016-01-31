@@ -67,6 +67,7 @@ public class SheepOrWolfDialogue : MonoBehaviour {
         SheepWolfManager.wolfTotal += wolf;
         SheepWolfManager.sheepTotal += sheep;
         reply = reply.Replace("NEWLINE", "\n");
+       // replyText.text = "";
         replyText.text = reply;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -81,7 +82,7 @@ public class SheepOrWolfDialogue : MonoBehaviour {
         }
         if (background.name == "LeaderDialogue" && npc2 != null)
         {
-            Destroy(npc1);
+            Destroy(npc2);
         }
         background.GetComponent<RectTransform>().anchoredPosition = new Vector2(500, 500);
         
