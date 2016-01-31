@@ -8,10 +8,18 @@ public class andrewSheepScript : MonoBehaviour {
     public bool isEscaping;
     private Rigidbody rb;
     private float currentSpeed;
+    public float speedThreshold;
+    public float sideJumpForce;
+    public float sideFriction;
+    private bool dead;
+    public float torqueAmount;
 
-	// Use this for initialization
-	void Start () {
+
+
+// Use this for initialization
+void Start () {
         rb = GetComponent<Rigidbody>();
+        dead = false;
 	}
 	
 	// Update is called once per frame
@@ -22,10 +30,68 @@ public class andrewSheepScript : MonoBehaviour {
             transform.LookAt(target.transform);
             rb.AddRelativeForce(Vector3.forward);
 
-            rb.velocity = new Vector3(transform.forward.x * currentSpeed, transform.forward.y * currentSpeed, transform.forward.z * currentSpeed);
+            if (rb.velocity.magnitude > speedThreshold)
+            {
+                //rb.velocity = new Vector3(transform.forward.x * currentSpeed, transform.forward.y * currentSpeed, transform.forward.z * currentSpeed);
+            }
 
-            //float step = speed * Time.deltaTime;
-            //transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed);
+            //side velocity dampner
+           // Debug.Log(rb.velocity.z);
+            //if we have velocity to the right
+            /*
+            if (rb.velocity.z > 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z - sideFriction);
+            }
+            if (rb.velocity.z < 0)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z + sideFriction);
+            }
+            */
+            // dampen it
+
+            //if we have velocity to the left
+            //dampen it
+
+
+        }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("CollisionEnter");
+        rb.AddRelativeForce(Vector3.left * sideJumpForce);
+        if (collision.gameObject.tag =="wolf")
+        {
+            dead = true;
+            isEscaping = false;
+            Debug.Log("DEAD");
+        }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.tag);
+        if (other.tag == "wolf" && dead == false)
+        {
+            
+            rb.AddRelativeTorque(Vector3.left * torqueAmount);
+            dead = true;
+            isEscaping = false;
+        }
+    }
+
+    void Update()
+    {
+        if(dead)
+        {
+
+            Transform[] allTransforms = gameObject.GetComponentsInChildren<Transform>();
+
+            foreach (Transform childObjects in allTransforms)
+            {
+                if (gameObject.transform.IsChildOf(childObjects.transform) == false)
+                    Destroy(childObjects.gameObject);
+            }
         }
     }
 }
