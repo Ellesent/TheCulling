@@ -13,6 +13,7 @@ public class SheepOrWolfDialogue : MonoBehaviour {
    public AudioSource npc;
    public AudioSource npc1;
    public AudioSource npc2;
+   public AudioSource npc3;
   
     float time;
 
@@ -29,9 +30,13 @@ public class SheepOrWolfDialogue : MonoBehaviour {
             npc1 = GameObject.Find("Sneaky").GetComponent<AudioSource>();
         }
 
-        if (GameObject.Find("Leader") != null)
+        if (GameObject.Find("LeaderPeep") != null)
         {
-            npc2 = GameObject.Find("Leader").GetComponent<AudioSource>();
+            npc2 = GameObject.Find("LeaderPeep").GetComponent<AudioSource>();
+        }
+        if (GameObject.Find("BraggerPeep") != null)
+        {
+            npc3 = GameObject.Find("BraggerPeep").GetComponent<AudioSource>();
         }
 	}
 	
@@ -83,6 +88,10 @@ public class SheepOrWolfDialogue : MonoBehaviour {
         if (background.name == "LeaderDialogue" && npc2 != null)
         {
             Destroy(npc2);
+        }
+        if (background.name == "BraggerDialogue" && npc3 != null)
+        {
+            Destroy(npc3);
         }
         background.GetComponent<RectTransform>().anchoredPosition = new Vector2(500, 500);
         

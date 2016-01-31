@@ -5,6 +5,8 @@ public class NPCBehavior : MonoBehaviour {
     public GameObject friendDialogue;
     public GameObject sneakyDialogue;
     public GameObject leaderDialogue;
+    public GameObject braggerDialogue;
+    public GameObject gossipDialogue;
     GameObject dialogue;
    
 
@@ -39,6 +41,10 @@ public class NPCBehavior : MonoBehaviour {
             else if (name == "LeaderPeep")
             {
                 dialogue = Instantiate(leaderDialogue) as GameObject;
+            }
+            else if (name == "BraggerPeep")
+            {
+                dialogue = Instantiate(braggerDialogue) as GameObject;
             }
                 
 
